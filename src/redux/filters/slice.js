@@ -8,6 +8,9 @@ const filtersSlice = createSlice({
     setFilters(state, { payload }) {
       state.filters = payload;
     },
+    resetFilters(state) {
+      state.filters = {};
+    },
   },
   selectors: {
     selectFilters(state) {
@@ -16,7 +19,7 @@ const filtersSlice = createSlice({
   },
 });
 
-export const { setLocation, resetFilters, setFilters } = filtersSlice.actions;
+export const { setFilters, resetFilters } = filtersSlice.actions;
 export const { selectFilters } = filtersSlice.selectors;
 export const filtersReducer = filtersSlice.reducer;
 

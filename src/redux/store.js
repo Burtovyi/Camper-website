@@ -18,7 +18,7 @@ import { filtersReducer } from "./filters/slice";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: "items",
+  whitelist: ["favoriteCampers"], // `whitelist` має бути масивом
 };
 
 const persistedReducer = persistReducer(persistConfig, favoriteCampersReducer);
@@ -29,13 +29,12 @@ export const store = configureStore({
     campers: campersReducer,
     filters: filtersReducer,
   },
-  middleware: (getDefaultMiddleware) => [
-    ...getDefaultMiddleware({
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  ],
 });
 
 export let persistor = persistStore(store);

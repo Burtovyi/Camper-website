@@ -1,3 +1,4 @@
+import React from "react";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import * as Yup from "yup";
 import css from "./BookForm.module.css";
@@ -7,9 +8,6 @@ export default function BookForm() {
   return (
     <>
       <Formik
-        onSubmit={() => {
-          window.location.reload();
-        }}
         initialValues={{ name: "", email: "", bookingDate: "", comment: "" }}
         validationSchema={Yup.object({
           name: Yup.string().min(2, "Your name is too short").required("Name is required"),
@@ -17,6 +15,12 @@ export default function BookForm() {
           bookingDate: Yup.date().required("Booking date is required"),
           comment: Yup.string(),
         })}
+        onSubmit={(values, actions) => {
+          // Handle form submission here
+          console.log(values);
+          actions.setSubmitting(false);
+          window.location.reload();
+        }}
       >
         <Form className={css.bookFormContainer}>
           <div>
