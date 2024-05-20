@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  gap: 64px;
+  padding: 0 64px;
+  justify-content: center;
+}
+.section {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.aside {
+  padding-top: 120px;
+  width: 360px;
+}
